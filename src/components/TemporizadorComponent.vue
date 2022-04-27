@@ -7,7 +7,7 @@
       </span>
       <span>play</span>
     </button>
-    <button class="button" @click="finalizar">
+    <button class="button" @click="finalizar" :disabled="!cronometroRodando">
       <span class="icon">
         <i class="fas fa-stop"></i>
       </span>
@@ -28,6 +28,7 @@ export default defineComponent({
     return {
       tempoEmSegundos: 0,
       cronometro: 0,
+      cronometroRodando: false,
     };
   },
   computed: {
@@ -37,6 +38,8 @@ export default defineComponent({
   },
   methods: {
     iniciar() {
+      // 1 seg = 1000 ms
+      this.cronometroRodando = true;
       this.cronometro = setInterval(() => {
         this.tempoEmSegundos++;
         console.log(this.tempoEmSegundos);
@@ -44,6 +47,7 @@ export default defineComponent({
       console.log("iniciando...");
     },
     finalizar() {
+      this.cronometroRodando = false;
       clearInterval(this.cronometro);
       console.log("finalizando...");
     },
