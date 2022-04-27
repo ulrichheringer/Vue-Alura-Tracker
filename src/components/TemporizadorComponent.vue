@@ -1,6 +1,6 @@
 <template>
   <div class="is-flex is-align-items-center is-justify-content-space-between">
-    <CronometroComponent :tempoEmSegundos="tempoEmSegundos" />
+    <CronometroComponent :tempoEmSegundos="tempoEmSegundos" :disabled="cronometroRodando"/>
     <button class="button" @click="iniciar">
       <span class="icon">
         <i class="fas fa-play"></i>
