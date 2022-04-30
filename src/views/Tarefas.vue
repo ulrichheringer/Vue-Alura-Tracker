@@ -16,7 +16,7 @@ import TarefaComponent from "../components/TarefaComponent.vue";
 import ITarefa from "../interfaces/ITarefa";
 
 export default defineComponent({
-  name: "App",
+  name: "TarefasView",
   components: {
     FormularioComponent,
     TarefaComponent,
