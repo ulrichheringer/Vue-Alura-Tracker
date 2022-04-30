@@ -1,13 +1,13 @@
 <template>
   <div class="is-flex is-align-items-center is-justify-content-space-between">
     <CronometroComponent :tempoEmSegundos="tempoEmSegundos" />
-    <button class="button" @click="iniciar" :disabled="cronometroRodando">
+    <button class="button biniciar" @click="iniciar" :disabled="cronometroRodando">
       <span class="icon">
         <i class="fas fa-play"></i>
       </span>
       <span>play</span>
     </button>
-    <button class="button" @click="finalizar" :disabled="!cronometroRodando">
+    <button class="button bfinalizar" @click="finalizar" :disabled="!cronometroRodando">
       <span class="icon">
         <i class="fas fa-stop"></i>
       </span>
@@ -57,3 +57,12 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.biniciar {
+  border-radius: 12px;
+}
+.bfinalizar {
+  border-radius: 12px;
+}
+</style>

@@ -1,16 +1,17 @@
 <template>
-    <div class="box has-text-weight-bold">
-        <div class="columns is-7">
-            {{tarefa.descricao}}
+    <BoxComponent>
+        <div class="columns is-7 textotarefa">
+            {{tarefa.descricao || "Tarefa sem descrição"}}
         </div>
         <div class="column">
-            <CronometroComponent :tempoEmSegundos="tarefa.duracaoEmSegundos" />
+            <CronometroComponent class="cronometro" :tempoEmSegundos="tarefa.duracaoEmSegundos" />
         </div>
-    </div>
+    </BoxComponent>
 </template>
 
 <script lang="ts">
 import ITarefa from '@/interfaces/ITarefa'
+import BoxComponent from '@/components/BoxComponent.vue'
 import { defineComponent, PropType } from 'vue'
 import CronometroComponent from './CronometroComponent.vue'
 export default defineComponent({
@@ -23,13 +24,17 @@ export default defineComponent({
     },
     components: {
         CronometroComponent,
+        BoxComponent,
     },
 })
 </script>
 
-<style scoped>
+<style>
 .box {
-    background: #FAF0CA;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
+}
+.textotarefa {
+    font-size: 1.20rem;
+    color: #000;
 }
 </style>
