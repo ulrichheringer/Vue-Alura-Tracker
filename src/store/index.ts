@@ -1,9 +1,9 @@
 import IProjeto from "@/interfaces/IProjeto";
 import { InjectionKey } from "vue";
-import { createStore } from "vuex";
+import { createStore, Store } from "vuex";
 
 interface Estado {
-    projetos: IProjeto
+    projetos: IProjeto[]
 }
 
 export const key: InjectionKey<Store<Estado>> = Symbol()
