@@ -2,74 +2,45 @@
   <div class="box formulario">
     <div class="columns">
       <div
-        class="column is-5"
+        class="column is-8"
         role="form"
         aria-label="Formulário para criação de uma nova tarefa"
       >
-        <input
-          type="text"
-          class="input digtarefa"
-          placeholder="Digite sua tarefa..."
-          v-model="descricao"
-        />
-      </div>
-      <div class="column is-3">
-        <div class="select">
-          <select v-model="idProjeto">
-            <option value="">Selecione o projeto</option>
-            <option
-              :value="projeto.id"
-              v-for="projeto in projetos"
-              :key="projeto.id"
-            >
-              {{ projeto.nome }}
-            </option>
-          </select>
-        </div>
+        <input type="text" class="input digtarefa" placeholder="Digite sua tarefa..." v-model="descricao" />
       </div>
       <div class="column">
-        <TemporizadorComponent @aoTemporizadorFinalizado="finalizarTarefa" />
+        <TemporizadorComponent @aoTemporizadorFinalizado="finalizarTarefa"/>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
-import TemporizadorComponent from "./TemporizadorComponent.vue"; // importando o temporizador
-import { useStore } from "vuex"; // importando o store
-import { key } from "@/store";
+import { defineComponent } from "vue";
+import TemporizadorComponent from "./TemporizadorComponent.vue";	// importando o temporizador
 export default defineComponent({
   name: "FormularioComponent",
-  emits: ["aoSalvarTarefa"],
+  emits: ['aoSalvarTarefa'],
   components: {
-    TemporizadorComponent,
+      TemporizadorComponent,
   },
   data() {
-    return {
-      descricao: "",
-      idProjeto: "",
-    };
+      return {
+          descricao: '',
+      }
   },
   methods: {
-    finalizarTarefa(tempoDecorrido: number) {
-      this.$emit("aoSalvarTarefa", {
-        duracaoEmSegundos: tempoDecorrido,
-        descricao: this.descricao,
-        projeto: this.projetos.find(proj => proj.id === this.idProjeto),
-      });
-      console.log(tempoDecorrido);
-      console.log(this.descricao);
-      this.descricao = "";
-    },
+      finalizarTarefa(tempoDecorrido: number) {
+        this.$emit('aoSalvarTarefa', {
+          duracaoEmSegundos: tempoDecorrido,
+          descricao: this.descricao
+        })
+          console.log(tempoDecorrido);
+          console.log(this.descricao);
+          this.descricao = '';
+      },
   },
-  setup() {
-    const store = useStore(key);
-    return {
-      projetos: computed(() => store.state.projetos),
-    };
-  },
-});
+})
 </script>
 
 <style >
@@ -78,6 +49,6 @@ export default defineComponent({
   background-color: var(--bg-primario);
 }
 .input {
-  border-radius: 30px;
+  border-radius:30px;
 }
 </style>
