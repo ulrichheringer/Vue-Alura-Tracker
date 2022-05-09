@@ -1,8 +1,11 @@
 <template>
   <header>
-    <h1>
-      <img src="../assets/logo.png" alt="Logo" />
-    </h1>
+    <div class="has-text-centered">
+    <div class="has-text-centered">
+      <h1>
+        <img src="../assets/logo.png" alt="Logo" />
+      </h1>
+    </div>
     <div class="has-text-centered">
       <button class="button" @click="alterarTema">
         {{ textoBotao }}
@@ -24,6 +27,7 @@
         </li>
       </ul>
     </nav>
+    </div>
   </header>
 </template>
 
@@ -61,6 +65,9 @@ header {
   background: #0d3b66;
   width: 100%;
   height: 100vh;
+}
+.panel {
+  box-shadow: none;
 }
 img {
   border-radius: 10px;

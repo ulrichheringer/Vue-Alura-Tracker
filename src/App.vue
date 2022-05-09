@@ -52,4 +52,7 @@ main.modo-escuro {
 .conteudo {
   background-color: var(--bg-primario);
 }
+body {
+  font-family: sans-serif;
+}
 </style>
