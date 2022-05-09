@@ -21,32 +21,41 @@ export default defineComponent({
   name: "FormularioProjetos",
   props: {
     id: {
-      type: String
-    }
+      type: String,
+    },
   },
   mounted() {
-    if(this.id) {
-      const projeto = this.store.state.projetos.find(proj => proj.id == this.id);
+    if (this.id) {
+      const projeto = this.store.state.projetos.find(
+        (proj) => proj.id == this.id
+      );
       console.log(projeto);
-      this.nomeDoProjeto = projeto?.nome || '';
+      this.nomeDoProjeto = projeto?.nome || "";
     }
-  },  
+  },
   data() {
     return {
-      nomeDoProjeto: ""
+      nomeDoProjeto: "",
     };
   },
   methods: {
     salvar() {
-      this.store.commit("ADICIONA_PROJETO", this.nomeDoProjeto);
+      if (this.id) {
+        this.store.commit('ALTERA_PROJETO', {
+          id: this.id,
+          nome: this.nomeDoProjeto,
+        })
+      } else {
+        this.store.commit("ADICIONA_PROJETO", this.nomeDoProjeto);
+      }
       this.nomeDoProjeto = "";
-      this.$router.push('/projetos')
-    }
+      this.$router.push("/projetos");
+    },
   },
   setup() {
     const store = useStore();
     return {
-      store
+      store,
     };
   },
 });

@@ -11,20 +11,27 @@ const rotas: RouteRecordRaw[] = [
 },
 {
     path: "/projetos",
-    name: "Projetos",
-    component: Projetos
+    component: Projetos,
+    children: [
+        {
+            path: "",
+            name: "Projetos",
+            component: Projetos,
+        },
+        {
+            path: "/novo",
+            name: "Novo Projeto",
+            component: Formulario,
+        },
+        {
+            path: "/:id",
+            name: "Editar Projeto",
+            component: Formulario,
+            props: true,
+        },
+    ]
 },
-{
-    path: "/projetos/novo",
-    name: "Novo Projeto",
-    component: Formulario,
-},
-{
-    path: "/projetos/:id",
-    name: "Editar Projeto",
-    component: Formulario,
-    props: true,
-},
+
 ];
 
 const router = createRouter({
