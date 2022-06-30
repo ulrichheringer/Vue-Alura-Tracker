@@ -16,7 +16,9 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import { useStore } from "@/store";
-import {ADICIONA_PROJETO, ALTERA_PROJETO, EXCLUIR_PROJETO} from '../../store/mutations-types';
+import {ADICIONA_PROJETO, ALTERA_PROJETO} from '../../store/mutations-types';
+import { TipoNotificacao } from "@/interfaces/INotificacao";
+import {notificacaoMixin} from '@/mixins/notificar';
 
 export default defineComponent({
   name: "FormularioProjetos",
@@ -25,6 +27,7 @@ export default defineComponent({
       type: String,
     },
   },
+  mixins: [notificacaoMixin],
   mounted() {
     if (this.id) {
       const projeto = this.store.state.projetos.find(
@@ -47,9 +50,14 @@ export default defineComponent({
           nome: this.nomeDoProjeto,
         })
       } else {
+        if (!this.nomeDoProjeto) {
+        this.notificar(TipoNotificacao.FALHA, 'Ops!', "O nome do projeto não pode estar vazio!");
+        return;
+      }
         this.store.commit(ADICIONA_PROJETO, this.nomeDoProjeto);
       }
       this.nomeDoProjeto = "";
+      this.notificar(TipoNotificacao.SUCESSO, "Projeto salvo com sucesso!", "Prontinho! :) Seu projeto já está disponivel.");
       this.$router.push("/projetos");
     },
   },

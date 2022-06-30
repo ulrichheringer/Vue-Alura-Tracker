@@ -1,8 +1,8 @@
 import IProjeto from "@/interfaces/IProjeto";
 import { InjectionKey } from "vue";
 import { createStore, Store, useStore as vuexUseStore } from "vuex";
-import { ADICIONA_PROJETO, ALTERA_PROJETO, EXCLUIR_PROJETO } from './mutations-types';
-import INotificacao, { TipoNotificacao } from "@/interfaces/INotificacao";
+import { ADICIONA_PROJETO, ALTERA_PROJETO, EXCLUIR_PROJETO, NOTIFICAR } from './mutations-types';
+import INotificacao from "@/interfaces/INotificacao";
 
 interface Estado {
     projetos: IProjeto[],
@@ -14,29 +14,7 @@ export const key: InjectionKey<Store<Estado>> = Symbol()
 export const store = createStore<Estado>({
     state: {
         projetos: [],
-        notificacoes: [{
-            id: 1,
-            texto: "Uma notificação sucesso",
-            titulo: "Sucess man!",
-            tipo: TipoNotificacao.SUCESSO
-        }, {
-            id: 2,
-            texto: "Uma notificação aviso",
-            titulo: "Warning man!",
-            tipo: TipoNotificacao.ATENCAO
-        }, {
-            id: 3,
-            texto: "Uma notificação PERIGO",
-            titulo: "PERIGO man!",
-            tipo: TipoNotificacao.FALHA
-        },
-        {
-            id: 4,
-            texto: "Uma notificação sucesso",
-            titulo: "Sucess man!",
-            tipo: TipoNotificacao.SUCESSO
-        },
-        ]
+        notificacoes: [],
     },
     mutations: {
         [ADICIONA_PROJETO](state, nomeDoProjeto: string) {
@@ -52,6 +30,14 @@ export const store = createStore<Estado>({
         },
         [EXCLUIR_PROJETO](state, id: string) {
             state.projetos = state.projetos.filter(proj => proj.id != id);
+        },
+        [NOTIFICAR](state, novaNotificacao: INotificacao) {
+            novaNotificacao.id = new Date().getTime();
+            state.notificacoes.push(novaNotificacao);
+
+            setTimeout(() => {
+                state.notificacoes = state.notificacoes.filter(notificacao => notificacao.id != novaNotificacao.id)
+            }, 3000)
         }
     }
 })

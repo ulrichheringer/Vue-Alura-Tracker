@@ -39,7 +39,7 @@
 <script lang="ts">
 import { computed, defineComponent } from "@vue/runtime-core";
 import { useStore } from "@/store";
-import {ADICIONA_PROJETO, ALTERA_PROJETO, EXCLUIR_PROJETO} from '../../store/mutations-types';
+import {EXCLUIR_PROJETO} from '../../store/mutations-types';
 
 export default defineComponent({
   name: "ProjetosView",

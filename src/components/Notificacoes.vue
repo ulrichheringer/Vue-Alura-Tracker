@@ -1,6 +1,6 @@
 <template>
    <div class="notificacoes">
-       <article class="message is-success" :class="contexto[notificacao.tipo]" v-for="notificacao in notificacoes" :key="notificacao.id">
+       <article class="message" :class="contexto[notificacao.tipo]" v-for="notificacao in notificacoes" :key="notificacao.id">
            <div class="message-header">
                {{notificacao.titulo}}
            </div>
