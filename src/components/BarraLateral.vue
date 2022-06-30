@@ -6,11 +6,11 @@
         <img src="../assets/logo.png" alt="Logo" />
       </h1>
     </div>
-    <div class="has-text-centered">
+    <!-- <div class="has-text-centered">
       <button class="button" @click="alterarTema">
         {{ textoBotao }}
       </button>
-    </div>
+    </div> -->
     <nav class="panel mt-5">
       <ul>
         <li>
